@@ -4,9 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 const VideoCoursePlayer: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { title, type, courseData } = location.state || {
+    const { title, courseData } = location.state || {
         title: "Course Title",
-        type: "Video Course",
         courseData: null
     };
     const [activeTab, setActiveTab] = useState("contents");
@@ -67,18 +66,7 @@ const VideoCoursePlayer: React.FC = () => {
         setShowSettings(false);
     };
 
-    const cyclePlaybackSpeed = () => {
-        const speeds = [1, 1.25, 1.5, 2];
-        const nextSpeed = speeds[(speeds.indexOf(playbackSpeed) + 1) % speeds.length];
-        setPlaybackSpeed(nextSpeed);
-        if (videoRef.current) {
-            videoRef.current.playbackRate = nextSpeed;
-        }
-        // Keep menu open to see change or close? Usually close or show sub-menu.
-        // For simple interaction, we'll just update and maybe show a toast or rely on user noticing.
-        // Or we can close it.
-        setShowSettings(false);
-    };
+
 
     // Mock Video Source (using a sample video URL)
     // In a real app, this would come from the active item
