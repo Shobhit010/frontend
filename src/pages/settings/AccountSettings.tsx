@@ -1,42 +1,26 @@
-import { Link } from "react-router-dom";
 import AccountSettingsForm from "../../components/Settings/AccountSettingsForm";
 import Nav from "../../components/Settings/Nav";
 
 const AccountSettings = () => {
   return (
     <>
-      <div className="mb-[25px] md:flex items-center justify-between">
-        <h5 className="!mb-0">Account Settings</h5>
-
-        <ol className="breadcrumb mt-[12px] md:mt-0">
-          <li className="breadcrumb-item inline-block relative text-sm mx-[11px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
-            <Link
-              to="/dashboard/ecommerce"
-              className="inline-block relative ltr:pl-[22px] rtl:pr-[22px] transition-all hover:text-primary-500"
-            >
-              <i className="material-symbols-outlined absolute ltr:left-0 rtl:right-0 !text-lg -mt-px text-primary-500 top-1/2 -translate-y-1/2">
-                home
-              </i>
-              Dashboard
-            </Link>
-          </li>
-
-          <li className="breadcrumb-item inline-block relative text-sm mx-[11px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
-            Settings
-          </li>
-
-          <li className="breadcrumb-item inline-block relative text-sm mx-[11px] ltr:first:ml-0 rtl:first:mr-0 ltr:last:mr-0 rtl:last:ml-0">
+      {/* Modern Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-[25px] gap-[15px]">
+        <div>
+          <h2 className="text-xl font-bold text-black dark:text-white mb-1">
             Account Settings
-          </li>
-        </ol>
+          </h2>
+          <p className="text-gray-500 dark:text-gray-400">
+            Manage your account information and preferences.
+          </p>
+        </div>
       </div>
 
-      <div className="trezo-card bg-white dark:bg-[#0c1427] mb-[25px] p-[20px] md:p-[25px] rounded-md">
-        <div className="trezo-card-content">
-          <Nav />
+      {/* Settings Card */}
+      <div className="bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036] p-[20px] md:p-[25px]">
+        <Nav />
 
-          <AccountSettingsForm />
-        </div>
+        <AccountSettingsForm />
       </div>
     </>
   );

@@ -11,19 +11,19 @@ export interface User {
 
 const MOCK_USER: User = {
     id: "1",
-    email: "admin@trezo.com",
+    email: "admin@trigreexam.com",
     name: "Olivia John",
     role: "admin",
 };
 
-const AUTH_KEY = "trezo_auth_user";
+const AUTH_KEY = "trigreexam_auth_user";
 
 export const authService = {
     login: async (email: string, password: string): Promise<User> => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 // Simple mock validation
-                if (email === "admin@trezo.com" && password === "password") {
+                if (email === "admin@trigreexam.com" && password === "password") {
                     localStorage.setItem(AUTH_KEY, JSON.stringify(MOCK_USER));
                     resolve(MOCK_USER);
                 } else {

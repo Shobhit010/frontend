@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import SidebarMenu from "./SidebarMenu";
-import Footer from "./Footer";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -55,7 +54,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         {children}
                     </div>
 
-                    <Footer />
+
                 </div>
             </div>
         </>

@@ -139,8 +139,8 @@ const MyPurchases: React.FC = () => {
                                             onClick={() => navigate(`/invoice/${encodeURIComponent(purchase.id)}`)}
                                             className="flex items-center gap-1.5 py-2 px-4 border-2 border-primary-600 text-primary-600 rounded-lg text-[13px] font-semibold hover:bg-primary-600 hover:text-white transition-all"
                                         >
-                                            <i className="material-symbols-outlined !text-[18px]">download</i>
-                                            Invoice
+                                            <i className="material-symbols-outlined !text-[18px]">receipt_long</i>
+                                            View Invoice
                                         </button>
                                     )}
                                 </div>
