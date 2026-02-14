@@ -12,7 +12,11 @@ import Lms from "./pages/dashboard/Lms";
 import MyCourses from "./pages/dashboard/MyCourses";
 import MyResults from "./pages/dashboard/MyResults";
 import MyPurchases from "./pages/dashboard/MyPurchases";
+import TestReport from "./pages/dashboard/TestReport";
 import Announcements from "./pages/dashboard/Announcements";
+import VideoCoursePlayer from "./pages/lms/VideoCoursePlayer";
+import TestCourseDetails from "./pages/lms/TestCourseDetails";
+import TestResultPage from "./pages/lms/TestResultPage";
 
 // Settings Pages
 import AccountSettings from "./pages/settings/AccountSettings";
@@ -43,8 +47,12 @@ const App: React.FC = () => {
               <Route element={<PrivateRoutes />}>
                 {/* Dashboard */}
                 <Route path="/dashboard" element={<Lms />} />
+                <Route path="/lms/video-course-player" element={<VideoCoursePlayer />} />
+                <Route path="/lms/test-course-details" element={<TestCourseDetails />} />
+                <Route path="/dashboard/test-report" element={<TestResultPage />} />
                 <Route path="/my-courses" element={<MyCourses />} />
                 <Route path="/my-results" element={<MyResults />} />
+                <Route path="/my-results/test-report" element={<TestReport />} />
                 <Route path="/my-purchases" element={<MyPurchases />} />
                 <Route path="/announcements" element={<Announcements />} />
 

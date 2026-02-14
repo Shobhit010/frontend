@@ -136,7 +136,7 @@ const MyResults: React.FC = () => {
                                                 <span>Rank: {test.rank}/{test.totalRank}</span>
                                             </div>
                                             <button
-                                                onClick={() => navigate("/dashboard/test-report", { state: { testData: test } })}
+                                                onClick={() => navigate("/my-results/test-report", { state: { testData: test } })}
                                                 className="bg-white border border-blue-200 text-blue-600 group-hover:bg-blue-600 group-hover:text-white group-hover:border-transparent px-5 py-2 rounded-lg text-xs font-bold transition-all duration-300 shadow-sm group-hover:shadow-blue-200 hover:scale-105 active:scale-95 uppercase tracking-wider"
                                             >
                                                 Report
