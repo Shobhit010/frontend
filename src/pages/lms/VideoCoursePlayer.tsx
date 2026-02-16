@@ -294,11 +294,11 @@ const VideoCoursePlayer: React.FC = () => {
                 </div>
             </header>
 
-            <div className="flex flex-1 overflow-hidden">
+            <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
                 {/* Sidebar */}
                 <div
-                    className="border-r border-gray-200 dark:border-[#172036] flex flex-col bg-white dark:bg-[#0c1427] shadow-lg z-10 hidden lg:flex relative shrink-0"
-                    style={{ width: `${sidebarWidth}px` }}
+                    className="border-r border-gray-200 dark:border-[#172036] flex flex-col bg-white dark:bg-[#0c1427] shadow-lg z-10 w-full lg:w-auto lg:relative shrink-0 order-2 lg:order-1 h-[400px] lg:h-auto overflow-hidden"
+                    style={{ width: window.innerWidth >= 1024 ? `${sidebarWidth}px` : '100%' }}
                 >
                     {/* Resizer Handle */}
                     <div
@@ -486,7 +486,7 @@ const VideoCoursePlayer: React.FC = () => {
                 </div>
 
                 {/* Content Area */}
-                <div className="flex-1 overflow-y-auto bg-white dark:bg-[#0f172a] px-4 md:px-6 lg:px-8 pb-4 md:pb-6 lg:pb-8 pt-2">
+                <div className="flex-1 overflow-y-auto bg-white dark:bg-[#0f172a] px-4 md:px-6 lg:px-8 pb-4 md:pb-6 lg:pb-8 pt-2 order-1 lg:order-2">
                     <div className="max-w-6xl mx-auto">
                         {/* Video Player Container */}
                         <div className="bg-black rounded-xl overflow-hidden shadow-2xl relative mb-5 group aspect-video ring-1 ring-gray-900/5 w-full max-h-[75vh]">

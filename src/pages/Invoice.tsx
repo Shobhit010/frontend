@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 const Invoice: React.FC = () => {
     const { orderId } = useParams<{ orderId: string }>();
     const navigate = useNavigate();
+    const invoiceRef = useRef<HTMLDivElement>(null);
 
     // Mock invoice data - in real app, this would be fetched based on orderId
     const invoiceData = {
@@ -34,13 +37,78 @@ const Invoice: React.FC = () => {
             }
         ],
         subtotal: 4999,
+        serviceCharge: 500,
         tax: 899.82,
-        total: 5898.82
+        total: 6398.82 // 4999 + 500 + 899.82
     };
 
-    const handleDownload = () => {
-        // In a real app, this would trigger PDF generation
-        window.print();
+    const handleDownload = async () => {
+        if (!invoiceRef.current) {
+            alert("Error: Invoice reference not found.");
+            return;
+        }
+
+        try {
+            console.log("Starting PDF generation...");
+            const element = invoiceRef.current;
+
+            const canvas = await html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                logging: true, // Enable logging for debugging
+                backgroundColor: "#ffffff",
+                onclone: (clonedDoc) => {
+                    // Fix for Tailwind CSS v4 oklch error
+                    const elementsWithOklch = clonedDoc.querySelectorAll('*');
+                    elementsWithOklch.forEach((el: any) => {
+                        const style = window.getComputedStyle(el);
+                        // html2canvas fails on oklch. We can't easily convert all, 
+                        // but we can try to force standard colors or remove problematic ones
+                        if (style.color?.includes('oklch') || style.backgroundColor?.includes('oklch') || style.borderColor?.includes('oklch')) {
+                            // Reset to safe defaults if oklch is detected
+                            if (style.color?.includes('oklch')) el.style.color = 'inherit';
+                            if (style.backgroundColor?.includes('oklch')) el.style.backgroundColor = 'transparent';
+                            if (style.borderColor?.includes('oklch')) el.style.borderColor = 'currentColor';
+                        }
+
+                        // Remove some modern CSS features that cause issues
+                        el.style.containerType = 'none';
+                        el.style.contentVisibility = 'visible';
+                    });
+                }
+            });
+
+            console.log("Canvas generated successfully.");
+
+            const imgData = canvas.toDataURL("image/png");
+
+            const pdf = new jsPDF({
+                orientation: "p",
+                unit: "mm",
+                format: "a4"
+            });
+
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+
+            const imgWidth = canvas.width;
+            const imgHeight = canvas.height;
+            const ratio = Math.min(pdfWidth / (imgWidth / 2.8), pdfHeight / (imgHeight / 2.8)); // Adjust ratio for scale
+
+            const finalWidth = (imgWidth / 2.8) * ratio;
+            const finalHeight = (imgHeight / 2.8) * ratio;
+
+            const x = (pdfWidth - finalWidth) / 2;
+            const y = 10;
+
+            pdf.addImage(imgData, "PNG", x, y, finalWidth, finalHeight, undefined, 'FAST');
+            pdf.save(`Invoice_${invoiceData.invoiceNumber}.pdf`);
+            console.log("PDF saved successfully.");
+        } catch (error: any) {
+            console.error("PDF Generation Error:", error);
+            alert(`Failed to generate PDF: ${error.message || error.toString()}. This is often caused by modern CSS features like Tailwind v4 oklch colors.`);
+        }
     };
 
     return (
@@ -74,12 +142,27 @@ const Invoice: React.FC = () => {
             </div>
 
             {/* Invoice Card */}
-            <div className="bg-white dark:bg-[#0c1427] rounded-xl border border-gray-100 dark:border-[#172036] p-8 md:p-12 max-w-4xl mx-auto">
+            <div
+                ref={invoiceRef}
+                className="bg-white dark:bg-[#0c1427] rounded-xl border border-gray-100 dark:border-[#172036] p-8 md:p-12 max-w-4xl mx-auto"
+            >
                 {/* Invoice Header */}
                 <div className="flex flex-col md:flex-row justify-between mb-8 pb-8 border-b border-gray-200 dark:border-[#172036]">
                     <div>
                         <h1 className="text-3xl font-bold text-black dark:text-white mb-2">INVOICE</h1>
-                        <p className="text-gray-500 dark:text-gray-400">#{invoiceData.invoiceNumber}</p>
+                        <p className="text-gray-500 dark:text-gray-400 font-medium mb-1">
+                            Invoice No: #{invoiceData.invoiceNumber}
+                        </p>
+                        <div className="flex flex-col gap-1 text-sm text-gray-500 dark:text-gray-400">
+                            <span className="flex items-center gap-1.5">
+                                <span className="font-semibold text-gray-700 dark:text-gray-300">Order ID:</span>
+                                {invoiceData.orderId}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                                <span className="font-semibold text-gray-700 dark:text-gray-300">Date:</span>
+                                {invoiceData.date}
+                            </span>
+                        </div>
                     </div>
                     <div className="mt-4 md:mt-0">
                         <span className="inline-block px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-lg font-semibold">
@@ -114,25 +197,11 @@ const Invoice: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Invoice Details */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-6 bg-gray-50 dark:bg-[#15203c] rounded-lg">
-                    <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Order ID</p>
-                        <p className="font-semibold text-black dark:text-white">{invoiceData.orderId}</p>
-                    </div>
-                    <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Invoice Date</p>
-                        <p className="font-semibold text-black dark:text-white">{invoiceData.date}</p>
-                    </div>
-                    <div>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Due Date</p>
-                        <p className="font-semibold text-black dark:text-white">{invoiceData.dueDate}</p>
-                    </div>
-                </div>
+
 
                 {/* Items Table */}
-                <div className="mb-8">
-                    <table className="w-full">
+                <div className="mb-8 overflow-x-auto">
+                    <table className="w-full min-w-[600px]">
                         <thead>
                             <tr className="border-b-2 border-gray-200 dark:border-[#172036]">
                                 <th className="text-left py-3 text-sm font-semibold text-gray-700 dark:text-gray-300">Description</th>
@@ -160,6 +229,10 @@ const Invoice: React.FC = () => {
                         <div className="flex justify-between py-2 text-sm">
                             <span className="text-gray-600 dark:text-gray-400">Subtotal</span>
                             <span className="font-semibold text-gray-900 dark:text-white">₹{invoiceData.subtotal.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between py-2 text-sm">
+                            <span className="text-gray-600 dark:text-gray-400">Service Charge</span>
+                            <span className="font-semibold text-gray-900 dark:text-white">₹{invoiceData.serviceCharge.toFixed(2)}</span>
                         </div>
                         <div className="flex justify-between py-2 text-sm">
                             <span className="text-gray-600 dark:text-gray-400">Tax (18% GST)</span>

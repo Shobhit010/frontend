@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 const CARD_THEME = {
     vertical: {
         wrapper:
-            "trezo-card bg-white dark:bg-[#0c1427] rounded-2xl overflow-hidden w-[372px] shadow-sm flex-shrink-0 border border-gray-100 dark:border-[#172036] hover:-translate-y-1 hover:shadow-lg hover:bg-blue-50 dark:hover:bg-[#15203c] transition-all duration-300 cursor-pointer flex flex-col",
-        imageWrapper: "h-[240px] w-full overflow-hidden flex-shrink-0",
+            "trezo-card bg-white dark:bg-[#0c1427] rounded-2xl overflow-hidden shadow-sm flex-shrink-0 border border-gray-100 dark:border-[#172036] hover:-translate-y-1 hover:shadow-lg hover:bg-blue-50 dark:hover:bg-[#15203c] transition-all duration-300 cursor-pointer flex flex-col h-[420px]",
+        imageWrapper: "h-[130px] w-full overflow-hidden flex-shrink-0",
         content: "flex flex-col flex-grow justify-between",
     },
     horizontal: {
@@ -25,6 +25,12 @@ const CARD_THEME = {
         "flex items-center gap-1 bg-blue-50 dark:bg-blue-900/20 px-1.5 py-1 rounded-md",
     button:
         "block w-full text-center bg-white border border-primary-500 text-primary-500 font-medium py-1 rounded-md transition-all duration-300 hover:bg-primary-500 hover:text-white flex items-center justify-center gap-1 text-[10px]",
+};
+
+// Helper function to get random image
+const getRandomImage = () => {
+    const images = ["/images/cat.webp", "/images/upsc.webp", "/images/ssc.png"];
+    return images[Math.floor(Math.random() * images.length)];
 };
 
 export type Course = {
@@ -90,7 +96,7 @@ const Courses: React.FC<CourseListProps> = ({
                 className={
                     variant === "horizontal"
                         ? "flex flex-col gap-[15px]" // Vertical list for horizontal variant
-                        : "flex flex-wrap gap-[25px]" // Flex wrap for vertical so they stack nicely if needed, or use grid
+                        : "flex flex-wrap justify-center gap-[25px]"
                 }
             >
                 {displayedCourses.map((course) => {
@@ -103,9 +109,9 @@ const Courses: React.FC<CourseListProps> = ({
                                 {/* Left: Image (replacing Icon) */}
                                 <div className="w-[50px] h-[50px] rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
                                     <img
-                                        src={course.image}
+                                        src={getRandomImage()}
                                         alt={course.title}
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full object-cover object-right"
                                     />
                                 </div>
 
@@ -124,16 +130,24 @@ const Courses: React.FC<CourseListProps> = ({
                                             <img
                                                 src="/images/play.png"
                                                 alt="play"
-                                                className="w-[14px] h-[14px] object-contain"
+                                                className="w-[14px] h-[14px] object-contain opacity-60"
                                             />
                                             <span className="font-medium text-gray-700 dark:text-gray-300">{course.totalVideos} Videos</span>
                                         </div>
                                         <div className="flex items-center gap-1">
-                                            <i className="material-symbols-outlined text-[14px] text-gray-300">quiz</i>
+                                            <img
+                                                src="/images/paper2.png"
+                                                alt="tests"
+                                                className="w-[14px] h-[14px] object-contain"
+                                            />
                                             <span className="font-medium text-gray-700 dark:text-gray-300">{course.totalTests} Tests</span>
                                         </div>
                                         <div className="flex items-center gap-1">
-                                            <i className="material-symbols-outlined text-[14px] text-gray-300">event</i>
+                                            <img
+                                                src="/images/schedule.png" // or agenda.svg / calendar.svg if available
+                                                alt="calendar"
+                                                className="w-[14px] h-[14px] object-contain opacity-60"
+                                            />
                                             <span className="font-medium text-gray-700 dark:text-gray-300">Exp: {course.expiryDate}</span>
                                         </div>
                                     </div>
@@ -154,13 +168,13 @@ const Courses: React.FC<CourseListProps> = ({
                     }
 
                     return (
-                        <div key={course.id} className={CARD_THEME[variant].wrapper}>
+                        <div key={course.id} className={`${CARD_THEME[variant].wrapper} w-[320px]`}>
                             {/* Image Section */}
                             <div className={CARD_THEME[variant].imageWrapper}>
                                 <img
-                                    src={course.image}
+                                    src={getRandomImage()}
                                     alt={course.title}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-cover object-top"
                                 />
                             </div>
 
@@ -184,16 +198,24 @@ const Courses: React.FC<CourseListProps> = ({
                                             <img
                                                 src="/images/play.png"
                                                 alt="play"
-                                                className="w-[14px] h-[14px] object-contain"
+                                                className="w-[14px] h-[14px] object-contain opacity-60"
                                             />
                                             <span className="font-medium text-gray-700 dark:text-gray-300">{course.totalVideos} Videos</span>
                                         </div>
                                         <div className="flex items-center gap-1">
-                                            <i className="material-symbols-outlined text-[14px] text-gray-300">quiz</i>
+                                            <img
+                                                src="/images/paper2.png"
+                                                alt="tests"
+                                                className="w-[14px] h-[14px] object-contain"
+                                            />
                                             <span className="font-medium text-gray-700 dark:text-gray-300">{course.totalTests} Tests</span>
                                         </div>
                                         <div className="flex items-center gap-1">
-                                            <i className="material-symbols-outlined text-[14px] text-gray-300">event</i>
+                                            <img
+                                                src="/images/schedule.png"
+                                                alt="calendar"
+                                                className="w-[14px] h-[14px] object-contain opacity-60"
+                                            />
                                             <span className="font-medium text-gray-700 dark:text-gray-300">Validity 1 year</span>
                                         </div>
                                     </div>

@@ -47,6 +47,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className={`main-content-wrap transition-all ${active ? "active" : ""}`}>
                 <SidebarMenu toggleActive={toggleActive} />
 
+                {/* Mobile sidebar backdrop overlay */}
+                {active && (
+                    <div
+                        className="fixed inset-0 bg-black/40 z-[55] xl:hidden"
+                        onClick={toggleActive}
+                    />
+                )}
+
                 <div className="main-content transition-all flex flex-col overflow-hidden min-h-screen">
                     <Header toggleActive={toggleActive} />
 

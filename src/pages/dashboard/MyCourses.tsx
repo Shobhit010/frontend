@@ -114,12 +114,12 @@ const MyCourses: React.FC = () => {
       </div>
 
       {/* Courses Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[25px]">
+      <div className="flex flex-wrap justify-center gap-[25px]">
         {courses.map((course) => {
           return (
             <div
               key={course.id}
-              className="bg-white dark:bg-[#0c1427] rounded-md border border-gray-100 dark:border-[#172036] overflow-hidden hover:shadow-md transition-shadow flex flex-col h-full"
+              className="w-[330px] h-[350px] bg-white dark:bg-[#0c1427] rounded-2xl border border-gray-100 dark:border-[#172036] overflow-hidden hover:shadow-md transition-shadow flex flex-col"
             >
               {/* Image / Banner */}
               <div
@@ -174,20 +174,24 @@ const MyCourses: React.FC = () => {
                       <img
                         src="/images/play.png"
                         alt="play"
-                        className="w-[13px] h-[13px] object-contain"
+                        className="w-[13px] h-[13px] object-contain opacity-60"
                       />
                       <span>Total Videos: {course.totalVideos}</span>
                     </div>
                     <div className="flex items-center gap-0.5 whitespace-nowrap">
-                      <i className="material-symbols-outlined text-[13px] text-gray-300">
-                        quiz
-                      </i>
+                      <img
+                        src="/images/paper2.png"
+                        alt="tests"
+                        className="w-[13px] h-[13px] object-contain"
+                      />
                       <span>Total Tests: {course.totalTests}</span>
                     </div>
                     <div className="flex items-center gap-0.5 whitespace-nowrap">
-                      <i className="material-symbols-outlined text-[13px] text-gray-300">
-                        event
-                      </i>
+                      <img
+                        src="/images/schedule.png"
+                        alt="calendar"
+                        className="w-[13px] h-[13px] object-contain opacity-60"
+                      />
                       <span>Validity: {course.expiryDate}</span>
                     </div>
                   </div>

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -67,7 +66,7 @@ const MyPurchases: React.FC = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
+            <div className="flex flex-wrap justify-center gap-[25px]">
                 {purchases.slice(0, 3).map((purchase, index) => {
                     // Define images for each card
                     const images = [
@@ -82,7 +81,7 @@ const MyPurchases: React.FC = () => {
                     return (
                         <div
                             key={index}
-                            className="bg-white dark:bg-[#0c1427] rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl border border-gray-100 dark:border-[#172036]"
+                            className="w-[330px] h-[390px] bg-white dark:bg-[#0c1427] rounded-xl overflow-hidden transition-all hover:-translate-y-1 hover:shadow-xl border border-gray-100 dark:border-[#172036]"
                         >
                             {/* Image Header */}
                             <div className="relative h-[140px] overflow-hidden">

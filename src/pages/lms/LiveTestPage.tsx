@@ -112,7 +112,7 @@ const LiveTestPage: React.FC = () => {
         <div className="min-h-screen bg-gray-50 dark:bg-[#0c1427]">
             {/* Header */}
             <div className="bg-white dark:bg-[#0f1729] border-b border-gray-200 dark:border-[#172036] sticky top-0 z-10">
-                <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+                <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     <div>
                         <h1 className="text-xl font-bold text-gray-900 dark:text-white">{testTitle}</h1>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -123,8 +123,8 @@ const LiveTestPage: React.FC = () => {
                         {/* Timer */}
                         <div
                             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-lg font-bold ${timeLeft <= 60
-                                    ? 'bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400'
-                                    : 'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400'
+                                ? 'bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400'
+                                : 'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400'
                                 }`}
                         >
                             <i className="material-symbols-outlined text-[20px]">schedule</i>
@@ -155,8 +155,8 @@ const LiveTestPage: React.FC = () => {
                                     <label
                                         key={optionIndex}
                                         className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${answers[question.id] === optionIndex
-                                                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                                                : 'border-gray-200 dark:border-[#172036] hover:border-gray-300 dark:hover:border-gray-600'
+                                            ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                                            : 'border-gray-200 dark:border-[#172036] hover:border-gray-300 dark:hover:border-gray-600'
                                             }`}
                                     >
                                         <input
