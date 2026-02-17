@@ -102,7 +102,7 @@ const MyResults: React.FC = () => {
 
                         {/* Test-wise Performance Section */}
                         <div className="bg-gray-50/80 p-6 rounded-3xl border border-gray-100 shadow-sm">
-                            <div className="bg-white border border-gray-100 rounded-xl px-6 flex items-center justify-between gap-4 mb-4 min-h-[84px]">
+                            <div className="bg-white border border-gray-100 rounded-xl px-6 flex items-center justify-between gap-4 mb-4 min-h-[70px]">
                                 <h4 className="text-xl font-bold text-[#2d3748] m-0 mt-3">Test-wise Performance Summary</h4>
                                 <div className="flex items-center gap-3">
                                     <span className="text-sm font-extrabold text-blue-600 bg-white border border-blue-100 px-4 py-2 rounded-lg shadow-sm shrink-0">

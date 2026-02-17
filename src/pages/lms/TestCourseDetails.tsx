@@ -121,10 +121,15 @@ const TestCourseDetails: React.FC = () => {
                             <div className="flex flex-col gap-2 bg-gray-50/80 p-6 rounded-3xl border border-gray-100">
                                 <div
                                     onClick={() => toggleSeries(1)}
-                                    className="cursor-pointer bg-white border border-blue-100 rounded-xl p-6 flex items-center justify-between gap-3 hover:bg-blue-50/50 transition-colors"
+                                    className="cursor-pointer bg-white border border-blue-100 rounded-xl py-4 px-6 flex items-center justify-between gap-3 hover:bg-blue-50/50 transition-colors"
                                 >
-                                    <div className="flex items-center gap-2">
-                                        <h4 className="flex items-center text-sm font-bold text-gray-800">{title} Test Series</h4>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                                            <img src="/images/checklist.png" alt="Series Icon" className="w-7 h-7 object-contain" />
+                                        </div>
+                                        <div className="flex flex-col justify-center min-h-[40px]">
+                                            <h4 className="text-sm font-bold text-gray-800 leading-tight">{title} Test Series</h4>
+                                        </div>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <span className="text-sm font-extrabold text-blue-600 bg-white border border-blue-100 px-3 py-1 rounded shadow-sm">Total Tests: 3</span>
@@ -135,9 +140,9 @@ const TestCourseDetails: React.FC = () => {
                                 {openSeries[1] && (
                                     <div className="flex flex-col gap-4 pt-4 animate-in fade-in slide-in-from-top-2 duration-300 justify-start">
                                         {[
-                                            { id: 1, title: 'General Test-01', questions: 150, marks: 600, minutes: 90, date: '10-11-2026' },
-                                            { id: 2, title: 'General Test-02', questions: 100, marks: 400, minutes: 120, date: '01-02-2026' },
-                                            { id: 3, title: 'General Test-03', questions: 200, marks: 800, minutes: 30, date: '06-03-2026' }
+                                            { id: 1, title: 'General Test-01', questions: 150, marks: 600, minutes: 90, date: '04/02/2026 - 10/02/2026' },
+                                            { id: 2, title: 'General Test-02', questions: 100, marks: 400, minutes: 120, date: '11/02/2026 - 17/02/2026' },
+                                            { id: 3, title: 'General Test-03', questions: 200, marks: 800, minutes: 30, date: '18/03/2026 - 24/03/2026' }
                                         ].map((test) => (
                                             <div key={test.id} className="group bg-white rounded-xl py-2 px-4 shadow-sm hover:shadow-md border border-transparent hover:border-blue-100 transition-all duration-300 transform hover:-translate-y-0.5 w-full flex flex-col md:flex-row items-center justify-between gap-3 relative overflow-hidden">
                                                 <div className="absolute top-0 left-0 w-1 h-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-l-xl"></div>
@@ -180,10 +185,15 @@ const TestCourseDetails: React.FC = () => {
                             <div className="flex flex-col gap-2 bg-gray-50/80 p-6 rounded-3xl border border-gray-100">
                                 <div
                                     onClick={() => toggleSeries(2)}
-                                    className="cursor-pointer bg-white border border-blue-100 rounded-xl p-6 flex items-center justify-between gap-3 hover:bg-blue-50/50 transition-colors"
+                                    className="cursor-pointer bg-white border border-blue-100 rounded-xl py-4 px-6 flex items-center justify-between gap-3 hover:bg-blue-50/50 transition-colors"
                                 >
-                                    <div className="flex items-center gap-2">
-                                        <h4 className="flex items-center text-sm font-bold text-gray-800">{title} Practice Series</h4>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+                                            <img src="/images/checklist.png" alt="Series Icon" className="w-7 h-7 object-contain" />
+                                        </div>
+                                        <div className="flex flex-col justify-center min-h-[40px]">
+                                            <h4 className="text-sm font-bold text-gray-800 leading-tight">{title} Practice Series</h4>
+                                        </div>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <span className="text-sm font-extrabold text-blue-600 bg-white border border-blue-100 px-3 py-1 rounded shadow-sm">Total Tests: 2</span>
@@ -194,8 +204,8 @@ const TestCourseDetails: React.FC = () => {
                                 {openSeries[2] && (
                                     <div className="flex flex-col gap-4 pt-4 animate-in fade-in slide-in-from-top-2 duration-300">
                                         {[
-                                            { id: 4, title: 'Practice Test-01', questions: 50, marks: 200, minutes: 45, date: '12-11-2026' },
-                                            { id: 5, title: 'Practice Test-02', questions: 50, marks: 200, minutes: 45, date: '15-11-2026' }
+                                            { id: 4, title: 'Practice Test-01', questions: 50, marks: 200, minutes: 45, date: '12/11/2026 - 18/11/2026' },
+                                            { id: 5, title: 'Practice Test-02', questions: 50, marks: 200, minutes: 45, date: '15/11/2026 - 21/11/2026' }
                                         ].map((test) => (
                                             <div key={test.id} className="group bg-white rounded-xl py-2 px-4 shadow-sm hover:shadow-md border border-transparent hover:border-blue-100 transition-all duration-300 transform hover:-translate-y-0.5 w-full flex flex-col md:flex-row items-center justify-between gap-3 relative overflow-hidden">
                                                 <div className="absolute top-0 left-0 w-1 h-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-l-xl"></div>
@@ -253,7 +263,6 @@ const TestCourseDetails: React.FC = () => {
                                     const minutes = [12, 30, 60, 90, 120, 180][Math.floor(Math.random() * 6)];
 
                                     const startDay = Math.floor(Math.random() * 20) + 1;
-                                    const startHour = Math.floor(Math.random() * 12) + 9;
 
                                     liveTests.push({
                                         id: testNumber,
@@ -263,7 +272,7 @@ const TestCourseDetails: React.FC = () => {
                                         minutes,
                                         isLive,
                                         type: testNumber % 3 === 0 ? "Full Length Test" : "Live Test",
-                                        date: `${String(startDay).padStart(2, '0')}-02-2026 (${startHour}:00 ${Math.random() > 0.5 ? 'AM' : 'PM'})`
+                                        date: `${String(startDay).padStart(2, '0')}/02/2026 - ${String(startDay + 7).padStart(2, '0')}/02/2026`
                                     });
                                 }
 

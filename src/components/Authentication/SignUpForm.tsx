@@ -10,7 +10,7 @@ const SignUpForm: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-[25px] items-center">
             <div className="xl:ltr:-mr-[25px] xl:rtl:-ml-[25px] 2xl:ltr:-mr-[45px] 2xl:rtl:-ml-[45px] rounded-[25px] order-2 lg:order-1">
               <img
-                src="/images/sign-up.jpg"
+                src="/images/sign_in.svg"
                 alt="sign-up-image"
                 className="rounded-[25px]"
                 width={646}
@@ -43,52 +43,20 @@ const SignUpForm: React.FC = () => {
                 </p>
               </div>
 
-              <div className="flex items-center justify-between mb-[20px] md:mb-[23px] gap-[12px]">
-                <div className="grow">
-                  <button
-                    type="button"
-                    className="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500"
-                  >
-                    <img
-                      src="/images/icons/google.svg"
-                      className="inline-block"
-                      alt="google"
-                      width={25}
-                      height={25}
-                    />
-                  </button>
-                </div>
+              <div className="flex justify-center mb-[20px] md:mb-[23px]">
+  <button
+    type="button"
+    className="w-[220px] rounded-md transition-all py-[12px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500 flex items-center justify-center"
+  >
+    <img
+      src="/images/icons/google.svg"
+      alt="google"
+      width={28}
+      height={28}
+    />
+  </button>
+</div>
 
-                <div className="grow">
-                  <button
-                    type="button"
-                    className="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500"
-                  >
-                    <img
-                      src="/images/icons/facebook2.svg"
-                      className="inline-block"
-                      alt="google"
-                      width={25}
-                      height={25}
-                    />
-                  </button>
-                </div>
-
-                <div className="grow">
-                  <button
-                    type="button"
-                    className="block text-center w-full rounded-md transition-all py-[8px] md:py-[10.5px] px-[15px] md:px-[25px] text-black dark:text-white border border-[#D6DAE1] bg-white dark:bg-[#0a0e19] dark:border-[#172036] shadow-sm hover:border-primary-500"
-                  >
-                    <img
-                      src="/images/icons/apple.svg"
-                      className="inline-block"
-                      alt="google"
-                      width={25}
-                      height={25}
-                    />
-                  </button>
-                </div>
-              </div>
 
               <div className="mb-[15px] relative">
                 <label className="mb-[10px] md:mb-[12px] text-black dark:text-white font-medium block">

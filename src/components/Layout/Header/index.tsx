@@ -38,8 +38,10 @@ const Header: React.FC<HeaderProps> = ({ toggleActive }) => {
         id="header"
         className="header-area bg-white dark:bg-[#0c1427] py-[13px] px-[20px] md:px-[25px] fixed top-0 z-[50] rounded-b-md transition-all"
       >
-        <div className="md:flex md:items-center md:justify-between">
-          <div className="flex items-center justify-center md:justify-normal">
+        {/* Force flex-row on mobile, avoid centering items */}
+        <div className="flex items-center justify-between w-full">
+          {/* Hamburger Menu Group - Fixed to Left Corner */}
+          <div className="flex items-center justify-start shrink-0">
             <div className="relative leading-none top-px ltr:mr-[13px] ltr:md:mr-[18px] ltr:lg:mr-[23px] rtl:ml-[13px] rtl:md:ml-[18px] rtl:lg:ml-[23px]">
               <button
                 type="button"
@@ -49,25 +51,15 @@ const Header: React.FC<HeaderProps> = ({ toggleActive }) => {
                 <i className="material-symbols-outlined !text-[20px]">menu</i>
               </button>
             </div>
-
-
-
-
           </div>
 
-          <div className="flex items-center justify-center md:justify-normal mt-[13px] md:mt-0">
+          {/* Icons Group - Fixed to Right Corner */}
+          <div className="flex items-center justify-end md:gap-1">
             <AppsMenu />
             <DarkMode />
-
-
-
             <Fullscreen />
-
             <Notifications />
-
             <ProfileMenu />
-
-
           </div>
         </div>
       </div>
